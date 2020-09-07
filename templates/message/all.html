@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if message_list %}
+    {% for message in message_list %}
+        <div style="background-color: #f4f4f4; padding: 10px; border-bottom: 1px #ccc dotted;">
+                <form action="/deleteMessage/{{message.id}}/" method="post">
+                    {{message.message_text}}
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: red; color: white; padding: 0px 8px; border-radius: 10% / 20%; cursor: pointer; float: right; vertical-align: middle;">Delete</button>
+                </form>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

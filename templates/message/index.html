@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="text-align: center">
+        {% if last_message %}
+        <h1 class="display-4" style="font-size: xx-large">{{last_message.message_text}}</h1>
+        {% endif %}
+    </div>
+</div>
+
+<form action ="/" method="post" class="d-flex justify-content-center">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="col-md-10 input-group">
+            {{ form }}
+        </div>
+        <div class="col-md-2 input-group-btn">
+            <button type="submit" class="btn" style="background-color: white;">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
