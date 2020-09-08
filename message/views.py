@@ -26,7 +26,7 @@ def index(request):
     else:
         form = GreetingForm()
 
-    last_message = Message.objects.order_by('-pub_date')[0]
+    last_message = "" if Message.objects.all().count() <= 0 else Message.objects.order_by('-pub_date')[0]
     context = {'last_message': last_message, 'form': form}
     return render(request, 'message/index.html', context)
 
