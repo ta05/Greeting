@@ -24,4 +24,20 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 DATABASE_URL = env('DATABASE_URL')
 # Parse database connection url strings like psql://user:pass@127.0.0.1:8458/db
-DATABASES['default'] = dj_database_url.parse('postgres://jsefvoapkecivr:4009246d6062f477a9c09a3f16e578d4f01968dd0f367613ece3829ea893e52b@ec2-52-202-66-191.compute-1.amazonaws.com:5432/d7m28n3sitso46', conn_max_age=500)
+DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=500)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
